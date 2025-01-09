@@ -1,0 +1,137 @@
+.shop-detail {
+    display: flex;
+    justify-content: space-around;
+    height: 100vh;
+}
+
+.detail-content {
+    width: 50vw;
+    margin: 15vh 3vw 5vh 5vw;
+}
+
+.detail-img img {
+    width: 100%;
+}
+
+.detail-header {
+    top: 8em;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.detail-header button {
+    width: 5vmin;
+    height: 5vmin;
+    text-decoration: none;
+    font-size: 36px;
+    font-style: bold;
+    padding: 2px 8px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+    display: inline-block;
+    cursor: pointer;
+}
+
+.detail-header h1 {
+    font-size: 36px;
+    margin: 0;
+    padding-left: 15px;
+}
+
+.detail-tag {
+    font-size: 18px;
+    padding: 10px 0;
+    text-align: left;
+    display: flex;
+}
+
+.detail-tag-item {
+    display: inline-block;
+    padding-right: 10px;
+}
+
+.detail-comment {
+    font-size: 18px;
+}
+
+.reserve {
+    width: 50vw;
+}
+
+.reserve-content {
+    margin: 5vh 5vw 0 5vw;
+    background-color: #305DFF;
+    height: 83vh;
+    border-radius: 4px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+    position: relative;
+    /* overflow: hidden; */
+}
+
+.reserve-ttl {
+    padding-left: 20px;
+    padding-top: 18px;
+    font-size: 18px;
+    color: white;
+}
+
+.reserve-date, .reserve-select {
+    padding-left: 20px;
+}
+
+.reserve-date input {
+    width: 30%;
+    height: 24px;
+    margin-bottom: 20px;
+}
+
+.reserve-select select {
+    width: 90%;
+    height: 24px;
+    margin-bottom: 20px;
+}
+
+.output-table {
+    width: 85%;
+    padding: 20px;
+    padding-bottom: 0;
+    margin: 20px;
+    background-color: #4D7FFF;
+}
+
+.output-table__header {
+    width: 30%;
+    color: white;
+    text-align: left;
+    padding-bottom: 15px;
+    font-weight: normal;
+}
+
+.output-table__text {
+    border: none;
+    color: white;
+    padding-bottom: 15px;
+    padding-left: 5em;
+    width: 70%;
+}
+
+.reserve-btn button {
+    width: 100%;
+    height: 7vh;
+    color: white;
+    background-color: blue;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+}
+
+.form__error {
+    width: 100%;
+    padding-left: 20px;
+    color: red;
+}
