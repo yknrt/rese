@@ -52,8 +52,12 @@ class ReservationRequest extends FormRequest
                 }
 
                 // 重複チェック
-                $isOverlap = Reservation::where('date', $this->date)->where('time', $this->time)
-                    ->exists();
+                if ($this->has('edit')) {
+                    $isOverlap = Reservation::where('id', '<>', $this->id)->where('date', $this->date)->where('time', $this->time)->exists();
+                }
+                else {
+                    $isOverlap = Reservation::where('date', $this->date)->where('time', $this->time)->exists();
+                }
 
                 if ($isOverlap) {
                     $validator->errors()->add('datetime', '指定された時間と重複する予約があります。');

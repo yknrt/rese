@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Reservation;
 use App\Models\Favorite;
+use App\Models\Review;
 use App\Http\Requests\ReservationRequest;
 use Carbon\Carbon;
 
@@ -19,16 +20,16 @@ class UserController extends Controller
         $favoriteShopIds = Auth::user()->favorite()->pluck('shop_id')->toArray();
 
         $now = Carbon::now();
-        // $records = Auth::user()->reservation->whereRaw("CONCAT(date, ' ', time) <= ?", [$now])->get();
-        $records = $user->reservation->filter(function ($item) use ($now) {
+        $noVisited = $user->reservation->where('is_visited', 0);
+        $records = $noVisited->filter(function ($item) use ($now) {
             return strtotime($item->date . ' ' . $item->time) <= strtotime($now);
         });
         foreach ($records as $record) {
             // 編集したい内容を記述
-            $record->to_visited = true;
+            $record->is_visited = true;
             $record->save();
         }
-        $reservations = $user->reservation;
+        $reservations = $user->reservation->where('is_reviewed', 0);
 
         return view('mypage', compact('user', 'favorites', 'reservations', 'favoriteShopIds'));
     }
@@ -49,7 +50,7 @@ class UserController extends Controller
     }
 
     //店舗予約変更
-    public function edit(Request $request)
+    public function edit(ReservationRequest $request)
     {
         $reservation = Reservation::find($request->id);
         $newData = $request->only(['date', 'time', 'number']);
@@ -96,6 +97,19 @@ class UserController extends Controller
             ];
             Favorite::create($form);
         }
+        return redirect()->back();
+    }
+
+    public function review(Request $request)
+    {
+        Review::create([
+            'reservation_id' => $request->id,
+            'score' => $request->score,
+            'comment' => $request->comment
+        ]);
+        $reservation = Reservation::find($request->id);
+        $reservation->is_reviewed = true;
+        $reservation->save();
         return redirect()->back();
     }
 }
