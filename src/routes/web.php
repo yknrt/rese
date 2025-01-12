@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/reservation', [UserController::class, 'store']);
     Route::post('/delete', [UserController::class, 'delete']);
     Route::post('/favorite', [UserController::class, 'storeFavorite']);
+    Route::post('/reservation/review', [UserController::class, 'review']);
 });
 
 Route::get('/thanks', function () {

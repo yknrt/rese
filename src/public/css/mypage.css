@@ -128,6 +128,42 @@
     height: 24px;
 }
 
+.visited-text {
+    size: 24px;
+    color: red;
+}
+
+.review-form {
+    margin: 5px 0;
+    padding-bottom: 5px;
+    background-color: #fa4a5c;
+}
+
+.review--score {
+    padding: 5px;
+    text-align: center;
+}
+
+.review--score label {
+    margin-right: 10px;
+}
+
+.review--comment {
+    padding: 5px;
+    text-align: center;
+}
+
+.review--comment textarea {
+    width: 100%;
+    resize: none;
+}
+
+.review--btn {
+    display: block;
+    margin: 0 auto 5px;
+    cursor: pointer;
+}
+
 .favorite {
     width: 60%;
     /* margin: 0 8em; */

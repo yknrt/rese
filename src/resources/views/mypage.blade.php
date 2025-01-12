@@ -18,6 +18,9 @@
                         <img src="{{ asset('images/clock.svg') }}" alt="clock icon" class="icon">
                         <div class="number">予約{{ $loop->iteration }}</div>
                     </div>
+                    @if( $reservation->is_visited == 1 )
+                    <div class="visited-text">済</div>
+                    @else
                     <div class="btn">
                         <!-- 編集ボタン -->
                         <button class="edit-btn" id="edit{{ $reservation->id }}">
@@ -32,6 +35,7 @@
                             </button>
                         </form>
                     </div>
+                    @endif
                 </div>
                 <div class="reservation-table"  data-editing="false">
                     <table class="reservation-table__inner">
@@ -98,10 +102,29 @@
                             @enderror
                         </div>
                         <button class="save-btn" id="save{{ $reservation->id }}">
+                            <input type="hidden" name="edit" value="edit">
                             <img src="{{ asset('images/save.svg') }}">
                         </button>
                     </form>
                 </div>
+                @if( $reservation->is_visited == 1)
+                <div class="review-form">
+                    <form action="/reservation/review" method="POST">
+                        @csrf
+                        <div class="review--score">
+                            @for ($i =1; $i <=5; $i++)
+                            <input type="radio" id="scoreChoice{{ $i }}" name="score" value={{ $i }} {{ old('score') === $i ? 'checked' : '' }} checked />
+                            <label for="scoreChoice{{ $i }}">{{ $i }}</label>
+                            @endfor
+                        </div>
+                        <div class="review--comment">
+                            <textarea name="comment" rows="3" placeholder="レビューを書く">{{ old('comment') }}</textarea>
+                        </div>
+                        <input type="hidden" name="id" value={{ $reservation->id }}>
+                        <button class="review--btn">投稿</button>
+                    </form>
+                </div>
+                @endif
             </div>
             @endforeach
         </div>
