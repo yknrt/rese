@@ -13,6 +13,11 @@ class Shop extends Model
         'id',
     ];
 
+    public function user()
+    {
+        return $this->hasOne(Owner::class);
+    }
+
     public function area()
     {
         return $this->belongsTo(Area::class);

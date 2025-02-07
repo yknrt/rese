@@ -57,8 +57,9 @@
                         </tr>
                     </table>
                 </div>
+                <a class="code-link" href="/storage/code/qr_{{ $reservation->id }}.png">QRコードを表示</a>
                 <div class="edit-form" style="display: none;">
-                    <form action="/mypage/edit" method="POST">
+                    <form action="/mypage/update" method="POST">
                         @csrf
                         <input type="hidden" name="id" value={{ $reservation->id }}>
                         <div class="edit--date">
@@ -107,7 +108,12 @@
                         </button>
                     </form>
                 </div>
-                @if( $reservation->is_visited == 1)
+                @if( $reservation->is_visited == 1 && $reservation->is_paid == 0 )
+                    <form action="{{ route('user.checkout', $reservation->id) }}">
+                        <button class="payment-btn">決済</button>
+                    </form>
+                @endif
+                @if( $reservation->is_visited == 1 && $reservation->is_paid == 1 )
                 <div class="review-form">
                     <form action="/reservation/review" method="POST">
                         @csrf

@@ -1,26 +1,24 @@
-/* body {
-    overflow: hidden;
-} */
-
 .username {
-    width: 100vw;
-    position: absolute;
-    top: 10em;
+    display: block;
+    width: 100%;
+    position: relative;
+    top: 15%;
+    margin: 0 auto;
     text-align: center;
     font-weight: bold;
     font-size: 24px;
 }
 
 .mypage {
-    position: absolute;
-    width: 100vw;
-    top: 20em;
+    position: relative;
+    width: 100%;
+    top: 20%;
     display: flex;
 }
 
 .reservation-content {
     width: 30%;
-    margin: 0 8em;
+    margin: 0 5%;
 }
 
 .title_text {
@@ -133,6 +131,21 @@
     color: red;
 }
 
+.code-link {
+    display: block;
+    text-align: right;
+    padding-right: 20px;
+    margin-bottom: 15px;
+    color: orange;
+}
+
+.payment-btn {
+    display: block;
+    margin:  0 20px 15px auto;
+    color: red;
+    cursor: pointer;
+}
+
 .review-form {
     margin: 5px 0;
     padding-bottom: 5px;
@@ -164,19 +177,27 @@
     cursor: pointer;
 }
 
+.form__error {
+    width: 100%;
+    padding: 0 10px;
+    color: red;
+}
+
 .favorite {
     width: 60%;
-    /* margin: 0 8em; */
 }
 
 .favorite-content {
     display: flex;
-    /* padding: 20px 15px; */
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-around;
 }
 
 .card {
-    width: 400px;
-    margin-right: 60px;
+    width: 300px;
+    margin-right: 30px;
+    margin-bottom: 10px;
     border-radius: 3%;
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
@@ -191,7 +212,6 @@
 
 .card__content-ttl {
     font-size: 18px;
-    /* margin-bottom: 30px; */
     font-weight: bold;
 }
 
@@ -230,4 +250,25 @@
 .favorite-btn img {
     width: 35px;
     height: 35px;
+}
+
+.message {
+    color: green;
+}
+
+@media screen and (max-width: 768px) {
+    .mypage {
+        display: block;
+    }
+
+    .reservation-content {
+        width: auto;
+        margin: 0 10% 10%;
+    }
+
+    .favorite {
+        width: auto;
+        margin: 0 10%;
+    }
+
 }

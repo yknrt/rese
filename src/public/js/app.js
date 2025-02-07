@@ -15,7 +15,7 @@ function generateTimeRange(startHour, startMinute, endHour, endMinute, intervalM
 }
 
 
-// 編集モードを有効にする関数
+// 編集モードを有効にする関数 mypage.blade.php
 document.addEventListener('DOMContentLoaded', function () {
     const editButtons = document.querySelectorAll('.edit-btn');
 
@@ -32,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 editForm.style.display = 'none'; // 保存ボタンを非表示
                 container.setAttribute('data-editing', 'false');
             } else {
-                // editButton.style.display = 'none'; // 削除ボタンを非表示
                 editForm.style.display = 'block'; // 保存ボタンを表示
 
                 // 今日の日付を取得してmin属性に設定

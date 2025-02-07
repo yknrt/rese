@@ -47,8 +47,8 @@
                 {{ $message }}
                 @enderror
             </div>
-
             <div class="form__button">
+                <input type="hidden" name="user_type" value="user">
                 <button class="form__button-submit" type="submit">登録</button>
             </div>
         </form>

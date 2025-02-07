@@ -1,14 +1,10 @@
-body {
-    overflow: hidden;
-}
-
-.login-content {
-    position: absolute;
-    right: 0;
-    left: 0;
-    width: 30vw;
-    height: 30vh;
-    margin: 20vh auto;
+.login-content,
+.register-content {
+    position: relative;
+    top: 20%;
+    width: 50%;
+    height: 30%;
+    margin: 0 auto;
     background-color: white;
     border-radius: 2%;
     box-shadow: 2px 2px 4px gray;
@@ -16,21 +12,12 @@ body {
 }
 
 .register-content {
-    position: absolute;
-    right: 0;
-    left: 0;
-    width: 30vw;
-    height: 40vh;
-    margin: 20vh auto;
-    background-color: white;
-    border-radius: 2%;
-    box-shadow: 2px 2px 4px gray;
-    overflow: hidden;
+    height: 40%;
 }
 
 .content-heading {
     width: 100%;
-    height: 5vh;
+    height: 20%;
     background-color: #305DFF;
     color: white;
     display: flex;
@@ -40,7 +27,6 @@ body {
 
 .title_text {
     display: block;
-    position: relative;
     margin-left: 10px;
     font-size: 18px;
 }
@@ -55,6 +41,7 @@ body {
 
 .form__group {
     width: 100%;
+    margin-top: 10px;
     padding: 10px 30px;
     display: flex;
 }
@@ -95,6 +82,16 @@ body {
     color: white;
     border-radius: 10%;
     border: none;
+    margin-left: 15px;
+    margin-bottom: 10px;
     padding: 5px 10px;
     font-size: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .login-content,
+    .register-content {
+        width: 60%;
+    }
+
 }

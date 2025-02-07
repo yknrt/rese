@@ -5,29 +5,28 @@
 @endsection
 
 @section('content')
-<form action="/search" method="get">
-    @csrf
-    <div class="search">
-        <select name="area" class="select" value="{{ request('area') }}">
+<div class="search">
+    <form action="/search" method="get">
+        <select name="area" class="search-select" value="{{ request('area') }}">
             <option value="">All area</option>
             @foreach($areas as $area)
             <option value={{ $area->id }} {{ request('area')==$area->id ? 'selected' : '' }}>{{ $area->area }}</option>
             @endforeach
         </select>
-        <select name="genre" class="select" value="{{ request('genre') }}">
+        <select name="genre" class="search-select" value="{{ request('genre') }}">
             <option value="">All genre</option>
             @foreach($genres as $genre)
             <option value={{ $genre->id }} {{ request('genre')==$genre->id ? 'selected' : '' }}>{{ $genre->genre }}</option>
             @endforeach
         </select>
-        <div type="submit" class="search-text">
+        <div class="search-text">
             <button class="search-btn" type="submit">
                 <img src="{{ asset('images/search.svg') }}" class="icon">
             </button>
             <input type="search" name="keyword" value="{{ request('keyword') }}" placeholder="Search ...">
         </div>
-    </div>
-</form>
+    </form>
+</div>
 @endsection
 
 @section('main')
@@ -36,7 +35,7 @@
             @foreach($shops as $shop)
             <div class="card">
                 <div class="card__img">
-                    <img src="{{ $shop->img }}" alt="shop" />
+                    <img src="{{ asset($shop->img) }}" alt="shop" />
                 </div>
                 <div class="card__content">
                     <div class="card__content-ttl">{{ $shop->name }}</div>
