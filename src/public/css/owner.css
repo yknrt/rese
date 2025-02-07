@@ -1,0 +1,177 @@
+.main {
+    position: absolute;
+    top: 18vh;
+    margin: 0 auto;
+    width: 100vw;
+    display: flex;
+}
+
+.content {
+    width: 50%;
+    margin-left: 8vw;
+}
+
+.content-form {
+    width: 90%;
+    margin-right: 10vw;
+    background-color: #305DFF;
+}
+
+.form_group {
+    width: 100%;
+}
+
+.form__error {
+    width: 100%;
+    padding: 0 30px;
+    color: red;
+}
+
+.form--ttl {
+    margin-bottom: 30px;
+    font-weight: bold;
+    color: white;
+    padding: 10px 0 0 10px;
+}
+
+.reservation-ttl {
+    margin-bottom: 30px;
+    font-weight: bold;
+    padding: 10px 0 0 10px;
+}
+
+.form__input-text {
+    width: 100%;
+    margin: 10px;
+    margin-bottom: 20px;
+}
+
+.form__input-select {
+    width: 100%;
+    margin: 10px;
+}
+
+.form__input-text input {
+    width: 92%;
+}
+
+.form__input-select select {
+    width: 40%;
+    margin-right: 1%;
+    margin-bottom: 10px;
+}
+
+.form__input-select input {
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.form__input-text textarea {
+    width: 92%;
+    line-height: 1.5;
+    height: 7.5em;
+    margin-bottom: 10px;
+}
+
+.form__input-img input {
+    margin-bottom: 10px;
+}
+
+.form__btn {
+    display: block;
+    align-items: center;
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.img-label {
+    margin-left: 10px;
+    margin-bottom: 5px;
+    color: beige;
+}
+
+.form__input-img {
+    margin-left: 10px;
+    color: beige;
+}
+
+.form__btn {
+    text-align: right;
+    margin-bottom: 0;
+    padding-right: 30px;
+}
+
+.form__btn button {
+    color: red;
+    cursor: pointer;
+    border-radius: 10%;
+    border: none;
+    margin-left: 15px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    font-size: 15px;
+}
+
+.now-img img{
+    max-width: 20vw;
+    height: auto;
+}
+
+.reservation {
+    width: 50%;
+    margin-right: 8vw;
+}
+
+.reservation-table {
+    width: 90%;
+    padding-left: 15px;
+}
+
+.reservation-table__inner {
+    width: 90%;
+    background-color: #305DFF;
+    margin-bottom: 20px;
+}
+
+.reservation-table__header {
+    width: 30%;
+    color: white;
+    text-align: left;
+    padding: 10px 0 15px 10px;
+    font-weight: normal;
+}
+
+.reservation-table__text {
+    color: white;
+    font-weight: normal;
+    padding: 10px 0 15px 10px;
+    width: 70%;
+}
+
+@media screen and (max-width: 768px) {
+    .main {
+        display: block;
+    }
+
+    .content {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .content-form {
+        width: auto;
+    }
+
+    .reservation {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .reservation-ttl {
+        margin-top: 30px;
+    }
+
+    .reservation-table {
+        width: auto;
+    }
+}

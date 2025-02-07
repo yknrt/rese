@@ -16,9 +16,14 @@ use Laravel\Fortify\Fortify;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
+use Laravel\Fortify\Contracts\LogoutResponse;
 use App\Actions\Fortify\CustomLoginAction;
 use Illuminate\Support\Facades\Redirect;
-
+use Illuminate\Auth\Events\Logout;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Auth;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -37,23 +42,31 @@ class FortifyServiceProvider extends ServiceProvider
     {
         Fortify::createUsersUsing(CreateNewUser::class);
 
-        // Fortify::verifyEmailView(function () {
-        //     return view('auth.verify-email');
-        // });
+        Fortify::verifyEmailView(function () {
+            $guard = Auth::getDefaultDriver();
 
-        // Fortifyのログイン処理を独自のLoginRequestで設定
-        Fortify::authenticateUsing(function (LoginRequest $request) {
-            $user = User::where('email', $request->email)->first();
-
-            if ($user && Hash::check($request->password, $user->password)) {
-                return $user;
+            if ($guard === 'owner') {
+                return view('auth.owner-verify-email'); // Admin専用のビュー
+            } else {
+                return view('auth.user-verify-email'); // User専用のビュー
             }
-
-            return null;
         });
 
-        Fortify::registerView(function () {
-            return view('auth.register');
+        // Fortifyのログイン処理を独自のLoginRequestで設定
+        Fortify::authenticateUsing(function ($request) {
+            $userType = $request->input('user_type');
+            if ($userType === 'owner') {
+                $credentials = $request->only('email', 'password');
+                if (Auth::guard('owner')->attempt($credentials)) {
+                    return Auth::guard('owner')->user();
+                }
+            } elseif ($userType === 'user') {
+                $credentials = $request->only('email', 'password');
+                if (Auth::guard('user')->attempt($credentials)) {
+                    return Auth::guard('user')->user();
+                }
+            }
+            return null;
         });
 
         // ユーザー登録後のリダイレクトロジック
@@ -69,22 +82,21 @@ class FortifyServiceProvider extends ServiceProvider
             }
         );
 
-        Fortify::loginView(function () {
-            return view('auth.login');
-        });
-
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
 
             return Limit::perMinute(10)->by($email . $request->ip());
         });
 
-        // ログアウト後のリダイレクト先を設定
-        // Fortify::logoutView(function () {
-        //     return redirect('/login');
-        // });
-
         $this->app->bind(FortifyLoginRequest::class, LoginRequest::class);
+
+        // ログアウト後のリダイレクト先を指定
+        $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
+            public function toResponse($request)
+            {
+                return redirect('/login');
+            }
+        });
 
     }
 }

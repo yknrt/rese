@@ -8,7 +8,7 @@
     <div class="shop-detail">
         <div class="detail-content">
             <div class="detail-header">
-                <button type="button" onClick="history.back()">&lt;</button>
+                <button class="back-btn" type="button" onClick="history.back()">&lt;</button>
                 <h1 class="name">{{ $shop->name }}</h1>
             </div>
             <div class="detail-img">

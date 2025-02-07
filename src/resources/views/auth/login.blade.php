@@ -14,7 +14,7 @@
             <div class="form__group">
                 <img src="{{ asset('images/email.svg') }}" alt="email icon" class="icon">
                 <div class="form__input-text">
-                    <input type="email" name="email" placeholder="Email" />
+                    <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" />
                 </div>
             </div>
             <div class="form__error">
@@ -36,6 +36,11 @@
                 @enderror
             </div>
             <div class="form__button">
+                <select class="select_role" name="user_type" required>
+                    <option value="admin">admin</option>
+                    <option value="owner">owner</option>
+                    <option value="user" selected>user</option>
+                </select>
                 <button class="form__button-submit" type="submit">ログイン</button>
             </div>
         </form>

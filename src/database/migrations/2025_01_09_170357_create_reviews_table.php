@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('reservation_id')->constrained()->cascadeOnDelete();
             $table->tinyInteger('score');
-            $table->text('comment');
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

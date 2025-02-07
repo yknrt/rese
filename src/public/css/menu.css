@@ -1,8 +1,8 @@
 body {
     background: #eeeeee;
-    margin: 0;
+    margin: 0 auto;
     font-family: arial;
-    width: 100vw;
+    max-width: 1500px;
     height: 100vh;
     overflow-x: hidden;
 }
@@ -13,8 +13,8 @@ body {
 
 .overlay-button {
     position: absolute;
-    left: 8em;
-    top: 3em;
+    left: 10%;
+    top: 5.5%;
     padding: 20px 8px;
     z-index: 5;
     cursor: pointer;
@@ -101,7 +101,6 @@ input[type=checkbox]:checked~.overlay-button span:after {
     height: 80vh;
     padding-left: 0;
     list-style-type: none;
-    /* margin: 15px 0; */
 }
 
 .overlay-menu ul li {
@@ -133,10 +132,27 @@ input[type=checkbox]:checked~.overlay-button span:after {
 }
 
 .title {
-    z-index: 1;
+    z-index: 0;
     position: absolute;
-    left: 6em;
-    top: 0.75em;
+    left: 18%;
+    top: 2.5%;
     color: #305DFF;
     display: inline-block;
+}
+
+.message {
+    color: green;
+    text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .overlay-button {
+        left: 10%;
+        top: 5.5%;
+        padding: 20px 8px;
+    }
+
+    .title {
+        left: 18%;
+    }
 }

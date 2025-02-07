@@ -1,0 +1,39 @@
+.main {
+    position: relative;
+    top: 18%;
+}
+
+.mail-content {
+    width: 50%;
+    height: 40%;
+    margin: 40px auto;
+    background-color: white;
+    border-radius: 2%;
+    box-shadow: 2px 2px 4px gray;
+    overflow: hidden;
+}
+
+.content-select,
+.content-text {
+    margin-top: 20px;
+    padding-left: 30px;
+}
+
+.content-select select {
+    width: 95%;
+    height: 30px;
+    margin-bottom: 15px;
+}
+
+.content-text textarea {
+    width: 95%;
+    height: 5.5em;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .mail-content {
+        width: 60%;
+    }
+}

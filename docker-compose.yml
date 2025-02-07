@@ -1,4 +1,4 @@
-version: '3.8'
+# version: '3.8'
 
 services:
     nginx:
@@ -40,3 +40,16 @@ services:
             - mysql
         ports:
             - 8080:80
+
+    # cron:
+    #     container_name: 'rese'
+    #     build: ./docker/cron
+    #     # context: ./docker/cron
+    #     # dockerfile: Dockerfile
+    #     # platform: linux/amd64 # 必要に応じて
+    #     volumes:
+    #         - /var/run/docker.sock:/var/run/docker.sock
+    #         - ./docker/cron/config.json:/opt/crontab/config.json
+    #         - ./backup:/backup
+    #     # environment:
+    #     #  PASSWORD: "${PASSWORD}"

@@ -16,18 +16,26 @@
         <label for="overlay-input" class="overlay-button"><span></span></label>
         <div class="overlay-menu">
             <ul>
-                <li><a href="/">Home</a></li>
                 @auth
-                    <!-- <li><a href="/login">Logout</a></li> -->
+                    @if (Auth::guard('admin')->check())
+                    <li><a href="/admin/home">Home</a></li>
+                    @elseif (Auth::guard('owner')->check())
+                    <li><a href="/owner/home">Home</a></li>
+                    @elseif (Auth::guard('user')->check())
+                    <li><a href="/">Home</a></li>
+                    @endif
                     <li>
                         <form class="form" action="/logout" method="post">
                             @csrf
                             <button class="logout-btn" type="submit">Logout</button>
                         </form>
                     </li>
+                    @if (Auth::guard('user')->check())
                     <li><a href="/mypage">Mypage</a></li>
+                    @endif
                 @endauth
                 @guest
+                    <li><a href="/">Home</a></li>
                     <li><a href="/register">Registration</a></li>
                     <li><a href="/login">Login</a></li>
                 @endguest
@@ -36,6 +44,9 @@
         <h1 class="title">Rese</h1>
         @yield('content')
     </div>
+    @if (session('message'))
+        <p class="message">{{ session('message') }}</p>
+    @endif
     @yield('main')
 </body>
 

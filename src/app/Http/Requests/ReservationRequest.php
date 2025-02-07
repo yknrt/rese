@@ -13,7 +13,7 @@ class ReservationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return True;
+        return true;
     }
 
     /**

@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Shop;
 use App\Models\Reservation;
 use App\Models\Favorite;
 use App\Http\Requests\ReservationRequest;
+
+use App\Models\User;
 
 class ShopController extends Controller
 {
@@ -19,8 +22,13 @@ class ShopController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
         $shops = Shop::all();
+        $user = Auth::user();
         // ログイン中のユーザーのお気に入り店舗IDを取得
-        $favoriteShopIds = Auth::user()->favorite()->pluck('shop_id')->toArray();
+        if (!empty($user)) {
+            $favoriteShopIds = $user->favorite()->pluck('shop_id')->toArray();
+        } else {
+            $favoriteShopIds = [];
+        }
         return view('index', compact('areas', 'genres', 'shops', 'favoriteShopIds'));
     }
 
@@ -40,10 +48,15 @@ class ShopController extends Controller
         }
         if (!empty($request->keyword)) {
             $query->where('name', 'like', '%' . $request->keyword . '%')
-            ->Where('summary', 'like', '%' . $request->keyword . '%');
+            ->orWhere('summary', 'like', '%' . $request->keyword . '%');
         }
         $shops = $query->get();
-        $favoriteShopIds = Auth::user()->favorite()->pluck('shop_id')->toArray();
+
+        if (!empty(Auth::user())) {
+            $favoriteShopIds = Auth::user()->favorite()->pluck('shop_id')->toArray();
+        } else {
+            $favoriteShopIds = [];
+        }
         $areas = Area::all();
         $genres = Genre::all();
         return view('index', compact('areas', 'genres', 'shops', 'favoriteShopIds'));

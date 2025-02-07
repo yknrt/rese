@@ -19,6 +19,7 @@ return new class extends Migration
             $table->time('time');
             $table->integer('number')->length(2);
             $table->boolean('is_visited')->default(false);
+            $table->boolean('is_paid')->default(false);
             $table->boolean('is_reviewed')->default(false);
             $table->timestamps();
         });
